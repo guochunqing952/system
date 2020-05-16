@@ -21,7 +21,7 @@ app.use('/api/theme', ThemeRouter);
 // 通常情况下，服务器会提供一个统一的api接口，用于处理上传的文件
 app.use('/api/upload', UpLoadRouter);
 
-app.listen(3000);
+app.listen(80);
 
 // let department = [
 //   '研发部',

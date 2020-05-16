@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rd /s /q dist & tsc",
+    "build": "rd /s /q dist & tsc && mv public dist/",
     "dev": "nodemon --watch src -e ts --exec ts-node src/index.ts"
   },
   "devDependencies": {
