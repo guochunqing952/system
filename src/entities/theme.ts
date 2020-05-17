@@ -8,19 +8,27 @@ export class Theme extends BaseEntity {
   @Type(() => String)
   public department: string;
 
-  @IsNotEmpty({ message: '类型不可以为空' })
-  @ArrayMinSize(1, { message: '类型>=1' })
-  @IsArray({ message: '类型必须是数组' })
-  @Type(() => String)
-  public type: string[];
-
   @IsNotEmpty({ message: '学习主题不可以为空' })
   @Type(() => String)
   public project: string;
 
+  @IsNotEmpty({ message: '是否是范式讲堂课程' })
+  @Type(() => String)
+  public specialContent: string;
+
+  @IsNotEmpty({ message: '课程难易程度不可以为空' })
+  @Type(() => String)
+  public difficulty: string;
+
   // @IsNotEmpty({ message: '学习时间不可以为空' })
   // @Type(() => String)
   public time: string;
+
+  @IsNotEmpty({ message: '类型不可以为空' })
+  // @ArrayMinSize(1, { message: '类型>=1' })
+  // @IsArray({ message: '类型必须是数组' })
+  @Type(() => String)
+  public type: string = '';
 
   @IsNotEmpty({ message: '分享人不可以为空' })
   @Type(() => String)

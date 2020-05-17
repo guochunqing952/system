@@ -55,6 +55,7 @@ export class ThemeService {
   ): Promise<SearchResult<ThemeInterface>> {
     // 1、条件转换类型
     const newCondition = SearchCondition.transform(condition);
+    console.log(newCondition);
 
     // 2、条件数据验证(异步的)
     const errors = await newCondition.validateThis(true);
@@ -74,6 +75,8 @@ export class ThemeService {
       department: { $regex: new RegExp(newCondition.department) },
       type: { $regex: new RegExp(newCondition.type) },
       sharePerson: { $regex: new RegExp(newCondition.sharePerson) },
+      difficulty: { $regex: new RegExp(newCondition.difficulty) },
+      specialContent: { $regex: new RegExp(newCondition.specialContent) },
     })
       .skip((newCondition.page - 1) * newCondition.limit)
       .limit(newCondition.limit);
@@ -83,6 +86,8 @@ export class ThemeService {
       department: { $regex: new RegExp(newCondition.department) },
       type: { $regex: new RegExp(newCondition.type) },
       sharePerson: { $regex: new RegExp(newCondition.sharePerson) },
+      difficulty: { $regex: new RegExp(newCondition.difficulty) },
+      specialContent: { $regex: new RegExp(newCondition.specialContent) },
     }).countDocuments();
 
     return {

@@ -18,10 +18,12 @@ const themeSchema = new Mongoose.Schema<ThemeInterface>(
     monitor: String,
     helper: String,
     bp: String,
-    type: [String],
+    type: String,
     visitor: Number,
     timing: Number,
     link: String,
+    specialContent: String,
+    difficulty: String,
   },
   {
     versionKey: false,
