@@ -55,7 +55,6 @@ export class ThemeService {
   ): Promise<SearchResult<ThemeInterface>> {
     // 1、条件转换类型
     const newCondition = SearchCondition.transform(condition);
-    console.log(newCondition);
 
     // 2、条件数据验证(异步的)
     const errors = await newCondition.validateThis(true);
@@ -78,6 +77,7 @@ export class ThemeService {
       difficulty: { $regex: new RegExp(newCondition.difficulty) },
       specialContent: { $regex: new RegExp(newCondition.specialContent) },
     })
+      .sort({ timing: -1 })
       .skip((newCondition.page - 1) * newCondition.limit)
       .limit(newCondition.limit);
 
