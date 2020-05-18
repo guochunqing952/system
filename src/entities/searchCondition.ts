@@ -32,6 +32,9 @@ export class SearchCondition extends BaseEntity {
   @Type(() => String)
   public difficulty: string = '';
 
+  @Type(() => String)
+  public sort: string = 'timing';
+
   // 将一个平面对象转换成SearchCondition对象;
   public static transform(plainObject: object): SearchCondition {
     if (plainObject instanceof SearchCondition) {

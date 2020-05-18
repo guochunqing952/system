@@ -25,9 +25,8 @@ app.use('/api/upload', UpLoadRouter);
 app.listen(80);
 
 // ThemeModel.find({ limit: 10 }).then((data) => console.log(data.map((item => console.log(item.visitor)))));
-// ThemeModel.find()
-//   .sort({ visitor: -1 })
-//   .then((data) => console.log(data.map((item) => console.log(item.visitor))));
+ThemeModel.find().sort({ number: -1 });
+// .then((data) => console.log(data.map((item) => console.log(item))));
 
 // const arr = ['技术', '产品', '商务', '市场', '内部'];
 const obj: any = {
@@ -39,11 +38,13 @@ const obj: any = {
   sharePerson: '',
   specialContent: '',
   type: '',
+  // sort: 'visitor',
 };
 
 ThemeService.find(obj).then((data) => {
   // console.log(data.data);
   data.data.map((item, id) => {
+    console.log(item.timing);
     // ThemeService.delete(item._id);
   });
 });

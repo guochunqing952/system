@@ -77,7 +77,7 @@ export class ThemeService {
       difficulty: { $regex: new RegExp(newCondition.difficulty) },
       specialContent: { $regex: new RegExp(newCondition.specialContent) },
     })
-      .sort({ timing: -1 })
+      .sort({ [newCondition.sort]: -1 })
       .skip((newCondition.page - 1) * newCondition.limit)
       .limit(newCondition.limit);
 
