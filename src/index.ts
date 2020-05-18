@@ -6,10 +6,12 @@ import UpLoadRouter from './routes/upLoadRoute';
 import history from 'connect-history-api-fallback';
 import { ThemeService } from './services/themeServices';
 import { ThemeModel } from './db';
+import path from 'path';
 
 const app = Express();
 app.use(history());
-app.use('/', Express.static('public/build'));
+app.use(Express.static(path.join(__dirname) + 'public/build'));
+// app.use('/', Express.static('public/build'));
 app.use('/upload', Express.static('public/upload'));
 
 // 配置中间件，用于解析请求消息体中的json格式
