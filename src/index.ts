@@ -30,21 +30,14 @@ ThemeModel.find().sort({ number: -1 });
 
 // const arr = ['技术', '产品', '商务', '市场', '内部'];
 const obj: any = {
-  department: '',
-  difficulty: '',
-  key: '',
-  limit: 5,
-  page: 1,
-  sharePerson: '',
-  specialContent: '',
-  type: '',
-  // sort: 'visitor',
+  key: '小狗',
+  limit: '500',
 };
 
 ThemeService.find(obj).then((data) => {
-  // console.log(data.data);
+  // console.log(data.count);
   data.data.map((item, id) => {
-    console.log(item.timing);
+    // console.log(item.project, item.sharePerson);
     // ThemeService.delete(item._id);
   });
 });

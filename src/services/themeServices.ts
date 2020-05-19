@@ -70,7 +70,12 @@ export class ThemeService {
     // 3、进行查询
     // 先关键字查询，然后分页
     const theme = await ThemeModel.find({
-      project: { $regex: new RegExp(newCondition.key) },
+      $or: [
+        { project: { $regex: new RegExp(newCondition.key) } },
+        { sharePerson: { $regex: new RegExp(newCondition.key) } },
+      ],
+      // sharePerson: { $regex: new RegExp(newCondition.key) },
+      // project: { $regex: new RegExp(newCondition.key) },
       department: { $regex: new RegExp(newCondition.department) },
       type: { $regex: new RegExp(newCondition.type) },
       sharePerson: { $regex: new RegExp(newCondition.sharePerson) },
@@ -82,7 +87,11 @@ export class ThemeService {
       .limit(newCondition.limit);
 
     const count = await ThemeModel.find({
-      project: { $regex: new RegExp(newCondition.key) },
+      $or: [
+        { project: { $regex: new RegExp(newCondition.key) } },
+        { sharePerson: { $regex: new RegExp(newCondition.key) } },
+      ],
+      // project: { $regex: new RegExp(newCondition.key) },
       department: { $regex: new RegExp(newCondition.department) },
       type: { $regex: new RegExp(newCondition.type) },
       sharePerson: { $regex: new RegExp(newCondition.sharePerson) },
