@@ -10,7 +10,6 @@ export class ThemeService {
   public static async add(theme: Theme): Promise<ThemeInterface | string[]> {
     // 1、转换类型
     theme = Theme.transform(theme);
-
     // 2、数据验证(异步的)
     const errors = await theme.validateThis();
     // 有错误的时候返回如下
@@ -34,17 +33,17 @@ export class ThemeService {
     if (errors.length > 0) {
       return errors;
     }
-    // 3、修改电影信息到数据库(异步)
-    // 返回的正常的电影
+    // 3、修改主题信息到数据库(异步)
+    // 返回的正常的主题
     await ThemeModel.updateOne({ _id: id }, theme);
     return [];
   }
 
-  // 删除一条电影
+  // 删除一个主题
   public static async delete(id: string): Promise<void> {
     await ThemeModel.deleteOne({ _id: id });
   }
-  // 查找一条电影
+  // 查找一条主题
   public static async findById(id: string): Promise<ThemeInterface | null> {
     return await ThemeModel.findById(id);
   }
@@ -70,34 +69,21 @@ export class ThemeService {
     // 3、进行查询
     // 先关键字查询，然后分页
     const theme = await ThemeModel.find({
-      $or: [
-        { project: { $regex: new RegExp(newCondition.key) } },
-        { sharePerson: { $regex: new RegExp(newCondition.key) } },
-      ],
-      // sharePerson: { $regex: new RegExp(newCondition.key) },
-      // project: { $regex: new RegExp(newCondition.key) },
-      department: { $regex: new RegExp(newCondition.department) },
-      type: { $regex: new RegExp(newCondition.type) },
-      sharePerson: { $regex: new RegExp(newCondition.sharePerson) },
-      difficulty: { $regex: new RegExp(newCondition.difficulty) },
-      specialContent: { $regex: new RegExp(newCondition.specialContent) },
+      // $or: [
+      //   { project: { $regex: new RegExp(newCondition.key) } },
+      //   { sharePerson: { $regex: new RegExp(newCondition.key) } },
+      // ],
+      // $and: [
+      //   { recommendToTags: { $regex: new RegExp(newCondition.department) } },
+      //   { recommendToTags: { $regex: new RegExp(newCondition.type) } },
+      //   { recommendToTags: { $regex: new RegExp(newCondition.difficulty) } },
+      // ],
     })
       .sort({ [newCondition.sort]: -1 })
       .skip((newCondition.page - 1) * newCondition.limit)
       .limit(newCondition.limit);
 
-    const count = await ThemeModel.find({
-      $or: [
-        { project: { $regex: new RegExp(newCondition.key) } },
-        { sharePerson: { $regex: new RegExp(newCondition.key) } },
-      ],
-      // project: { $regex: new RegExp(newCondition.key) },
-      department: { $regex: new RegExp(newCondition.department) },
-      type: { $regex: new RegExp(newCondition.type) },
-      sharePerson: { $regex: new RegExp(newCondition.sharePerson) },
-      difficulty: { $regex: new RegExp(newCondition.difficulty) },
-      specialContent: { $regex: new RegExp(newCondition.specialContent) },
-    }).countDocuments();
+    const count = await ThemeModel.find().countDocuments();
 
     return {
       count,

@@ -1,0 +1,28 @@
+import { IsNotEmpty, IsArray, ArrayMinSize } from 'class-validator';
+import { Type, plainToClass } from 'class-transformer';
+import 'reflect-metadata';
+import { BaseEntity } from './baseEntity';
+
+export class User extends BaseEntity {
+  @IsNotEmpty({ message: '用户邮箱不可以为空' })
+  @Type(() => String)
+  public idEmail: string;
+
+  @IsNotEmpty({ message: '用户姓名不可以为空' })
+  @Type(() => String)
+  public name: string;
+
+  @IsNotEmpty({ message: '用户标签不可以为空' })
+  @ArrayMinSize(1, { message: '标签数量>=1' })
+  @IsArray({ message: '用户标签必须是数组' })
+  @Type(() => String)
+  public tags: string[];
+
+  public static transform(plainObj: object): User {
+    if (plainObj instanceof User) {
+      return plainObj;
+    }
+    const userObj = plainToClass(User, plainObj);
+    return userObj;
+  }
+}

@@ -1,5 +1,5 @@
 import { BaseEntity } from './baseEntity';
-import { IsInt, Min } from 'class-validator';
+import { IsInt, Min, IsNotEmpty, ArrayMinSize, IsArray } from 'class-validator';
 import 'reflect-metadata';
 import { Type, plainToClass } from 'class-transformer';
 

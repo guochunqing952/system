@@ -4,31 +4,9 @@ import 'reflect-metadata';
 import { BaseEntity } from './baseEntity';
 
 export class Theme extends BaseEntity {
-  @IsNotEmpty({ message: '部门不可以为空' })
-  @Type(() => String)
-  public department: string;
-
   @IsNotEmpty({ message: '学习主题不可以为空' })
   @Type(() => String)
   public project: string;
-
-  @IsNotEmpty({ message: '是否是范式讲堂课程' })
-  @Type(() => String)
-  public specialContent: string;
-
-  @IsNotEmpty({ message: '课程难易程度不可以为空' })
-  @Type(() => String)
-  public difficulty: string;
-
-  // @IsNotEmpty({ message: '学习时间不可以为空' })
-  // @Type(() => String)
-  public time: string;
-
-  @IsNotEmpty({ message: '类型不可以为空' })
-  // @ArrayMinSize(1, { message: '类型>=1' })
-  // @IsArray({ message: '类型必须是数组' })
-  @Type(() => String)
-  public type: string = '';
 
   @IsNotEmpty({ message: '分享人不可以为空' })
   @Type(() => String)
@@ -38,29 +16,28 @@ export class Theme extends BaseEntity {
   @Type(() => String)
   public description: string;
 
+  @IsNotEmpty({ message: '课程创建时间不可以为空' })
+  @Type(() => Number)
+  public timing: number = new Date().getTime();
+
+  @IsNotEmpty({ message: '范大链接不可以为空' })
+  @Type(() => String)
+  public link: string =
+    'https://empower.4paradigm.com/#/course-center/fe8bb9a5-1cd2-4374-afce-2fc94839ebc0';
+
+  @IsNotEmpty({ message: '课程标签不可以为空' })
+  @ArrayMinSize(1, { message: '课程标签>=1' })
+  @IsArray({ message: '课程标签必须是数组' })
+  @Type(() => String)
+  public recommendToTags: string[];
+
+  @IsNotEmpty({ message: '访问量不可以为空' })
+  @Type(() => Number)
+  public visitor: number = 0;
+
   @IsNotEmpty({ message: '班长不可以为空' })
   @Type(() => String)
   public monitor: string;
-
-  // @IsNotEmpty({ message: '预计参加人数不可以为空' })
-  // @Type(() => String)
-  public number: number = 1;
-
-  // @IsNotEmpty({ message: '学习方式不可以为空' })
-  // @Type(() => String)
-  public learnWay: string = '';
-
-  // @IsNotEmpty({ message: '文件类型不可以为空' })
-  // @Type(() => String)
-  public fileType: string;
-
-  public timing: number = new Date().getTime();
-
-  // @IsNotEmpty({ message: '建议其他学习的部门不可以为空' })
-  // @ArrayMinSize(1, { message: '建议学习的部门>=1' })
-  // @IsArray({ message: '建议其他学习的部门必须是数组' })
-  // @Type(() => String)
-  public adviceDepartment: string[] = [];
 
   // @IsNotEmpty({ message: '学习委员不可以为空' })
   // @Type(() => String)
@@ -69,13 +46,6 @@ export class Theme extends BaseEntity {
   // @IsNotEmpty({ message: 'BP不可以为空' })
   // @Type(() => String)
   public bp: string = '';
-
-  // @IsNotEmpty({ message: '访问量不可以为空' })
-  // @Type(() => Number)
-  public visitor: number = 0;
-
-  public link: string =
-    'https://empower.4paradigm.com/#/course-center/fe8bb9a5-1cd2-4374-afce-2fc94839ebc0';
 
   public static transform(plainObj: object): Theme {
     if (plainObj instanceof Theme) {
