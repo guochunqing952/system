@@ -66,18 +66,18 @@ export class ThemeService {
         errors,
       };
     }
-    const obj: any = {
-      // idNumber: '456',
-    };
-    const user = await UserService.find(obj);
-    console.log(user.data[0].tags);
+    // const obj: any = {
+    //   // idNumber: '456',
+    // };
+    // const user = await UserService.find(obj);
+    // console.log(user.data[0].tags);
 
     // 3、进行查询
     // 先关键字查询，然后分页
     const theme = await ThemeModel.find({
-      recommendToTags: {
-        $in: [...user.data[0].tags],
-      },
+      // recommendToTags: {
+      //   $in: [...user.data[0].tags],
+      // },
       $or: [
         { project: { $regex: new RegExp(newCondition.key) } },
         { sharePerson: { $regex: new RegExp(newCondition.key) } },
@@ -96,9 +96,9 @@ export class ThemeService {
       .limit(newCondition.limit);
 
     const count = await ThemeModel.find({
-      recommendToTags: {
-        $in: [...user.data[0].tags],
-      },
+      // recommendToTags: {
+      //   $in: [...user.data[0].tags],
+      // },
       $or: [
         { project: { $regex: new RegExp(newCondition.key) } },
         { sharePerson: { $regex: new RegExp(newCondition.key) } },
