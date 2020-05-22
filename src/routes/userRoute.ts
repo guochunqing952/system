@@ -12,13 +12,11 @@ router.post('/', async (req, res, next) => {
   const data = await UserService.find(obj);
 
   if (data.count > 0) {
-    const result = 1;
+    const result = { ...data.data, code: 1 };
     ResponseHelper.sendData(result, res);
-    console.log(result, res);
   } else {
-    const result = 0;
-    ResponseHelper.sendData(result, res);
-    console.log(result, res);
+    const result = '用户名/密码错误';
+    ResponseHelper.sendError(result, res);
   }
 });
 
