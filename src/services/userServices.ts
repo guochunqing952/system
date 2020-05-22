@@ -2,6 +2,7 @@ import { User } from '../entities/user';
 import { UserInterface } from '../db/userSchema';
 import { UserModel } from '../db';
 import { UserCondition } from '../entities/userCondition';
+import { SearchResult } from '../entities/commonTypes';
 
 // 用户的增删改查功能
 export class UserService {
@@ -52,7 +53,7 @@ export class UserService {
   // 查找单个或者多个用户信息
   public static async find(
     condition: UserCondition
-  ): Promise<UserInterface[] | string[]> {
+  ): Promise<SearchResult<UserInterface>> {
     // 1、条件转换类型
     const newCondition = UserCondition.transform(condition);
 
@@ -60,15 +61,29 @@ export class UserService {
     const errors = await newCondition.validateThis(true);
     // 有错误的时候返回如下
     if (errors.length > 0) {
-      return errors;
+      return {
+        count: 0,
+        data: [],
+        errors,
+      };
     }
 
     // 3、进行查询
     // 先关键字查询，找到对应的用户
     const user = await UserModel.find({
       // idEmail: { $regex: new RegExp(newCondition.idNumber) },
-      tags: { $in: ['产品', '招聘', '456', 'dhj'] },
+      username: { $regex: new RegExp(newCondition.username) },
+      password: newCondition.password,
     });
-    return user;
+    const count = await UserModel.find({
+      username: { $regex: new RegExp(newCondition.username) },
+      password: newCondition.password,
+    }).countDocuments();
+
+    return {
+      count,
+      data: user,
+      errors: [],
+    };
   }
 }

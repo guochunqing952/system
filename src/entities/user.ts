@@ -10,7 +10,11 @@ export class User extends BaseEntity {
 
   @IsNotEmpty({ message: '用户姓名不可以为空' })
   @Type(() => String)
-  public name: string;
+  public username: string;
+
+  @IsNotEmpty({ message: '用户密码不可以为空' })
+  @Type(() => Number)
+  public password: number;
 
   @IsNotEmpty({ message: '用户标签不可以为空' })
   @ArrayMinSize(1, { message: '标签数量>=1' })

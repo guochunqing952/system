@@ -9,7 +9,9 @@ const userSchema = new Mongoose.Schema<UserInterface>(
     // 用户邮箱
     idEmail: String,
     // 用户姓名
-    name: String,
+    username: String,
+    // 用户密码
+    password: Number,
     // 用户标签
     tags: [String],
   },
