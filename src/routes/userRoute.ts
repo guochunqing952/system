@@ -9,7 +9,7 @@ const router = Express.Router();
 router.post('/', async (req, res, next) => {
   const { username, password } = req.body;
   const a = req.cookies[username];
-  console.log(a);
+  console.log(req.cookies[username]);
   const obj: any = { username, password };
   const data = await UserService.find(obj);
 
