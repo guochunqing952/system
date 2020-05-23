@@ -20,7 +20,7 @@ app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '152.136.230.239:80');
   res.header(
     'Access-Control-Allow-Headers',
-    'Content-Type,Content-Length, Authorization, Accept,X-Requested-With'
+    'Content-Type,Content-Length, Authorization, Accept,X-Requested-With,Set-Cookie:'
   );
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Credentials', 'true');
