@@ -16,7 +16,7 @@ router.post('/', async (req, res, next) => {
   if (data.count > 0) {
     const result = { ...data.data, code: 1 };
     console.log(username, password);
-    res.cookie(username, password);
+    res.cookie(username, password, { signed: true });
     console.log(res.cookie);
 
     console.log(res.cookie.name);
