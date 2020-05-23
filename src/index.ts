@@ -14,22 +14,14 @@ app.use(history());
 app.use('/', Express.static('public/build'));
 app.use('/upload', Express.static('public/upload'));
 
-app.use(
-  session({
-    name: 'session-id',
-    secret: '12345-67890',
-    saveUninitialized: false,
-    resave: false,
-  })
-);
 // 配置中间件，用于解析请求消息体中的json格式
 app.use(Express.json());
 
 // 使用postman进行测试
 app.use('/api/theme', ThemeRouter);
 
-// app.use(cookieParser());
-// app.use(bodyParser());
+app.use(cookieParser());
+app.use(bodyParser());
 
 app.use('/api/login', UserRouter);
 

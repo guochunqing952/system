@@ -13,11 +13,21 @@ router.post('/', async (req, res, next) => {
 
   if (data.count > 0) {
     const result = { ...data.data, code: 1 };
+    res.cookie(username, password, { maxAge: 20000, httpOnly: true });
     ResponseHelper.sendData(result, res);
   } else {
     const result = '用户名/密码错误';
     ResponseHelper.sendError(result, res);
   }
 });
+
+// router.post('/', async (req, res,next) => {
+//   const result = await ThemeService.add(req.body);
+//   if (Array.isArray(result)) {
+//     ResponseHelper.sendError(result, res);
+//   } else {
+//     ResponseHelper.sendData(result, res);
+//   }
+// });
 
 export default router;

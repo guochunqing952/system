@@ -20,7 +20,7 @@ export class User extends BaseEntity {
   @ArrayMinSize(1, { message: '标签数量>=1' })
   @IsArray({ message: '用户标签必须是数组' })
   @Type(() => String)
-  public tags: string[];
+  public tags?: string[];
 
   public static transform(plainObj: object): User {
     if (plainObj instanceof User) {
