@@ -16,6 +16,17 @@ app.use('/upload', Express.static('public/upload'));
 
 // 配置中间件，用于解析请求消息体中的json格式
 app.use(Express.json());
+app.all('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://192.168.199.246:3001');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type,Content-Length, Authorization, Accept,X-Requested-With'
+  );
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('X-Powered-By', ' 3.2.1');
+  next();
+});
 
 // 使用postman进行测试
 app.use('/api/theme', ThemeRouter);
