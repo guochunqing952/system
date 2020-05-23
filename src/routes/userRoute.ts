@@ -7,6 +7,7 @@ const router = Express.Router();
 // 登陆接口
 // 返回的参数 {msg:'xxx',err:1,user:{username,password}}
 router.post('/', async (req, res, next) => {
+  console.log(req);
   const { username, password } = req.body;
   const a = req.cookies[username];
   console.log(req.cookies[username]);

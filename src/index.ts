@@ -8,6 +8,7 @@ import ThemeRouter from './routes/themeRoute';
 import UserRouter from './routes/userRoute';
 import UpLoadRouter from './routes/upLoadRoute';
 import history from 'connect-history-api-fallback';
+import { UserService } from './services/userServices';
 
 const app = Express();
 app.use(history());
@@ -41,3 +42,13 @@ app.use('/api/login', UserRouter);
 app.use('/api/upload', UpLoadRouter);
 
 app.listen(80);
+
+// const obj: any = {
+//   idEmail: 'zxcvbnm',
+//   username: 'wangyibo',
+//   password: 19950226,
+//   tags: ['研发', '商务'],
+// };
+// UserService.add(obj).then((data) => {
+//   console.log(data);
+// });
