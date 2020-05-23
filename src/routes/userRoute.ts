@@ -18,6 +18,7 @@ router.post('/', async (req, res, next) => {
     console.log(username, password);
     res.cookie(username, password);
     console.log(res.cookie);
+
     console.log(res.cookie.name);
     ResponseHelper.sendData(result, res);
   } else {
