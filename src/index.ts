@@ -32,7 +32,7 @@ app.all('*', (req, res, next) => {
 app.use('/api/theme', ThemeRouter);
 
 app.use(cookieParser());
-app.use(bodyParser());
+// app.use(bodyParser());
 
 app.use('/api/login', UserRouter);
 

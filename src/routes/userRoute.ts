@@ -18,7 +18,6 @@ router.post('/', async (req, res, next) => {
     res.cookie(username, password, {
       httpOnly: false,
     });
-    console.log(res);
 
     ResponseHelper.sendData(result, res);
   } else {
@@ -27,13 +26,11 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// router.post('/', async (req, res,next) => {
-//   const result = await ThemeService.add(req.body);
-//   if (Array.isArray(result)) {
-//     ResponseHelper.sendError(result, res);
-//   } else {
-//     ResponseHelper.sendData(result, res);
-//   }
-// });
+router.post('/out', async (req, res) => {
+  const { username, password } = req.body;
+  const a = req.cookies[username];
+  console.log(req.cookies[username] + 'sdbvkscbvksbv');
+  res.clearCookie(username);
+});
 
 export default router;
