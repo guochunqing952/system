@@ -18,7 +18,7 @@ router.post('/', async (req, res, next) => {
     console.log(username, password);
 
     res.cookie(username, password, {
-      httpOnly: false,
+      httpOnly: true,
     });
     console.log(res.cookie.name);
     ResponseHelper.sendData(result, res);
