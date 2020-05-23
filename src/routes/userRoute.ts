@@ -15,7 +15,9 @@ router.post('/', async (req, res, next) => {
 
   if (data.count > 0) {
     const result = { ...data.data, code: 1 };
-    res.cookie(username, password, { maxAge: 20000, httpOnly: true });
+    console.log(username, password);
+    res.cookie(username, password);
+    console.log(res.cookie);
     console.log(res.cookie.name);
     ResponseHelper.sendData(result, res);
   } else {
