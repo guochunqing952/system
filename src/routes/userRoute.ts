@@ -15,12 +15,9 @@ router.post('/', async (req, res, next) => {
 
   if (data.count > 0) {
     const result = { ...data.data, code: 1 };
-    console.log(username, password);
-
     res.cookie(username, password, {
       httpOnly: false,
     });
-    console.log(res.cookie.name);
     ResponseHelper.sendData(result, res);
   } else {
     const result = '用户名/密码错误';
