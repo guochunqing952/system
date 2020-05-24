@@ -32,10 +32,11 @@ export class UserService {
     // 返回的空数组
     const user = await UserModel.findOne({ username });
     if (user && user.tags) {
+      console.log(user);
       const newTags = [...user.tags, ...tags];
       const newUser = { ...user, tags: newTags };
       console.log(newTags, newUser);
-      return await UserModel.updateOne(user._id, newUser);
+      return await UserModel.update({ username }, { tags: newTags });
     }
     return [];
   }
