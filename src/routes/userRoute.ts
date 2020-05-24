@@ -39,9 +39,6 @@ router.get('/user', async (req, res) => {
 });
 
 router.post('/out', async (req, res) => {
-  const { username, password } = req.body;
-  const a = req.cookies[username];
-  console.log(req.cookies[username] + 'sdbvkscbvksbv');
   res.clearCookie('username');
   const result = '清除cookie成功';
   ResponseHelper.sendData(result, res);
