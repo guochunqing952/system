@@ -34,7 +34,8 @@ export class UserService {
     if (user && user.tags) {
       const newTags = [...user.tags, ...tags];
       const newUser = { ...user, tags: newTags };
-      return await UserModel.updateOne(user?._id, newUser);
+      console.log(newTags, newUser);
+      return await UserModel.updateOne(user._id, newUser);
     }
     return [];
   }
