@@ -1,4 +1,4 @@
-import Express from 'express';
+import Express, { Response } from 'express';
 import session from 'express-session';
 import { UserService } from '../services/userServices';
 import { ResponseHelper } from './responseHelper';
@@ -25,11 +25,10 @@ router.post('/', async (req, res, next) => {
 });
 
 router.get('/user', async (req, res) => {
-  const { username, password } = req.body;
-  console.log(req.body);
-  const a = req.cookies.username;
-  if (req.cookies.username === res.cookie[username]) {
-    const obj: any = { username, password };
+  console.log(req.cookies.username);
+  if (req.cookies.username) {
+    const obj: any = { ...req.cookies.username };
+    console.log(obj);
     const data = await UserService.find(obj);
     const result = { ...data.data, code: 1 };
     ResponseHelper.sendData(result, res);
