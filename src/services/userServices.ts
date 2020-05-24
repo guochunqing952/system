@@ -24,16 +24,20 @@ export class UserService {
   }
 
   // 修改单个用户信息
-  // public static async edit(
-  //   username: string,
-  //   tags: string[]
-  // ): Promise<string[]> {
-  //   // 3、修改用户信息到数据库(异步)
-  //   // 返回的空数组
-  //   // const user = await UserModel.findOne({ username });
-  //   // const newUser = { ...user, tags };
-  //   // return await UserModel.updateOne(user?._id, newUser);
-  // }
+  public static async edit(
+    username: string,
+    tags: string[]
+  ): Promise<string[]> {
+    // 3、修改用户信息到数据库(异步)
+    // 返回的空数组
+    const user = await UserModel.findOne({ username });
+    if (user && user.tags) {
+      const newTags = [...user.tags, ...tags];
+      const newUser = { ...user, tags: newTags };
+      return await UserModel.updateOne(user?._id, newUser);
+    }
+    return [];
+  }
 
   // 删除一个用户
   public static async delete(id: string): Promise<boolean> {
