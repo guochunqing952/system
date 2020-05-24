@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
 router.get('/user', async (req, res) => {
   console.log(req.cookies.username);
   if (req.cookies.username) {
-    const obj: any = { ...req.cookies.username };
+    const obj: any = { username: req.cookies.username };
     console.log(obj);
     const data = await UserService.find(obj);
     const result = { ...data.data, code: 1 };
