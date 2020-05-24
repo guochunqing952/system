@@ -47,3 +47,4 @@ app.listen(80);
 const obj: any = { username: 'wangyibo' };
 UserService.findOne(obj).then((data) => console.log(data));
 UserService.edit('wangyibo', ['产品', '技术', '商务']);
+UserService.findOne(obj).then((data) => console.log(data));
