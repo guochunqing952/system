@@ -7,13 +7,11 @@ const router = Express.Router();
 // 登陆接口
 // 返回的参数 {msg:'xxx',err:1,user:{username,password}}
 router.post('/', async (req, res, next) => {
-  console.log(req);
   const { username, password } = req.body;
   const a = req.cookies[username];
   console.log(req.cookies[username]);
   const obj: any = { username, password };
   const data = await UserService.find(obj);
-
   if (data.count > 0) {
     const result = { ...data.data, code: 1 };
     res.cookie(username, password, {
@@ -28,6 +26,7 @@ router.post('/', async (req, res, next) => {
 
 router.get('/user', async (req, res) => {
   const { username, password } = req.body;
+  console.log(req.body);
   const a = req.cookies[username];
   if (req.cookies[username] === res.cookie[username]) {
     const obj: any = { username, password };
