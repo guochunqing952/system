@@ -43,12 +43,18 @@ app.use('/api/upload', UpLoadRouter);
 
 app.listen(80);
 
-// const obj: any = {
-//   idEmail: 'zxcvbnm',
-//   username: 'xiaozhan',
-//   password: 87654321,
-//   tags: ['产品', '商务'],
-// };
-// UserService.add(obj).then((data) => {
+const obj: any = {
+  username: 'wangyibo',
+};
+
+// UserService.findOne(obj).then((data) => {
 //   console.log(data);
 // });
+
+// UserService.edit('wangyibo', ['产品', '研发']).then((data) =>
+//   console.log(data)
+// );
+
+UserService.findOne(obj).then((data) => {
+  console.log(data);
+});

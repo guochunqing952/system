@@ -1,7 +1,7 @@
 import { User } from '../entities/user';
 import { UserInterface } from '../db/userSchema';
 import { UserModel } from '../db';
-import { UserCondition } from '../entities/userCondition';
+import { UserCondition, OneUserCondition } from '../entities/userCondition';
 import { SearchResult } from '../entities/commonTypes';
 
 // 用户的增删改查功能
@@ -24,21 +24,16 @@ export class UserService {
   }
 
   // 修改单个用户信息
-  public static async edit(id: string, user: User): Promise<string[]> {
-    // 1、转换类型
-    user = User.transform(user);
-
-    // 2、数据验证(异步的)
-    const errors = await user.validateThis(true);
-    // 有错误的时候返回如下
-    if (errors.length > 0) {
-      return errors;
-    }
-    // 3、修改用户信息到数据库(异步)
-    // 返回的空数组
-    await UserModel.updateOne({ _id: id }, user);
-    return [];
-  }
+  // public static async edit(
+  //   username: string,
+  //   tags: string[]
+  // ): Promise<string[]> {
+  //   // 3、修改用户信息到数据库(异步)
+  //   // 返回的空数组
+  //   // const user = await UserModel.findOne({ username });
+  //   // const newUser = { ...user, tags };
+  //   // return await UserModel.updateOne(user?._id, newUser);
+  // }
 
   // 删除一个用户
   public static async delete(id: string): Promise<boolean> {
@@ -46,8 +41,10 @@ export class UserService {
     return true;
   }
   // 查找一个用户
-  public static async findById(id: string): Promise<UserInterface | null> {
-    return await UserModel.findById(id);
+  public static async findOne(
+    condition: OneUserCondition
+  ): Promise<UserInterface | null> {
+    return await UserModel.findOne(condition);
   }
 
   // 查找单个或者多个用户信息

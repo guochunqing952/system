@@ -24,3 +24,7 @@ export class UserCondition extends BaseEntity {
     return plainToClass(UserCondition, plainObject);
   }
 }
+
+export interface OneUserCondition {
+  username: string;
+}
