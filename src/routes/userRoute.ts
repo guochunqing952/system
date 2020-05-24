@@ -14,7 +14,7 @@ router.post('/', async (req, res, next) => {
   const data = await UserService.find(obj);
   if (data.count > 0) {
     const result = { ...data.data, code: 1 };
-    res.cookie(username, password, {
+    res.cookie('username', username, {
       httpOnly: false,
     });
     ResponseHelper.sendData(result, res);
@@ -27,8 +27,8 @@ router.post('/', async (req, res, next) => {
 router.get('/user', async (req, res) => {
   const { username, password } = req.body;
   console.log(req.body);
-  const a = req.cookies[username];
-  if (req.cookies[username] === res.cookie[username]) {
+  const a = req.cookies.username;
+  if (req.cookies.username === res.cookie[username]) {
     const obj: any = { username, password };
     const data = await UserService.find(obj);
     const result = { ...data.data, code: 1 };
