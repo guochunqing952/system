@@ -45,9 +45,9 @@ app.listen(80);
 
 // const obj: any = {
 //   idEmail: 'zxcvbnm',
-//   username: 'wangyibo',
-//   password: 19950226,
-//   tags: ['研发', '商务'],
+//   username: 'xiaozhan',
+//   password: 87654321,
+//   tags: ['产品', '商务'],
 // };
 // UserService.add(obj).then((data) => {
 //   console.log(data);

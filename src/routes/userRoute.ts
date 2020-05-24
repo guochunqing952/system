@@ -19,10 +19,23 @@ router.post('/', async (req, res, next) => {
     res.cookie(username, password, {
       httpOnly: false,
     });
-
     ResponseHelper.sendData(result, res);
   } else {
     const result = '用户名/密码错误';
+    ResponseHelper.sendError(result, res);
+  }
+});
+
+router.get('/user', async (req, res) => {
+  const { username, password } = req.body;
+  const a = req.cookies[username];
+  if (req.cookies[username] === res.cookie[username]) {
+    const obj: any = { username, password };
+    const data = await UserService.find(obj);
+    const result = { ...data.data, code: 1 };
+    ResponseHelper.sendData(result, res);
+  } else {
+    const result = '请先登陆账号';
     ResponseHelper.sendError(result, res);
   }
 });
