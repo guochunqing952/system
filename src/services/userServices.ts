@@ -74,7 +74,7 @@ export class UserService {
     // 先关键字查询，找到对应的用户
     const user = await UserModel.find({
       // idEmail: { $regex: new RegExp(newCondition.idNumber) },
-      username: { $regex: new RegExp(newCondition.username) },
+      username: newCondition.username,
       password: newCondition.password,
     });
     const count = await UserModel.find({
