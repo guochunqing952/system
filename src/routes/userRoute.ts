@@ -46,7 +46,9 @@ router.post('/out', async (req, res) => {
 
 router.put('/', async (req, res) => {
   try {
-    const result = await UserService.edit(req.params.id, req.body);
+    const username = req.body.username;
+    const tags = req.body.tags;
+    const result = await UserService.edit(username, tags);
     if (result.length > 0) {
       ResponseHelper.sendError(result, res);
     } else {
