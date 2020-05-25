@@ -4,6 +4,7 @@ import { ThemeModel, UserModel } from '../db';
 import { SearchCondition } from '../entities/searchCondition';
 import { SearchResult } from '../entities/commonTypes';
 import { UserService } from './userServices';
+import { OneUserCondition } from '../entities/userCondition';
 
 // 主题的增删改查功能
 export class ThemeService {
@@ -66,18 +67,12 @@ export class ThemeService {
         errors,
       };
     }
-    // const obj: any = {
-    //   // idNumber: '456',
-    // };
-    // const user = await UserService.find(obj);
-    // console.log(user.data[0].tags);
-
     // 3、进行查询
     // 先关键字查询，然后分页
     const theme = await ThemeModel.find({
-      // recommendToTags: {
-      //   $in: [...user.data[0].tags],
-      // },
+      recommendToTags: {
+        $in: newCondition.tags,
+      },
       $or: [
         { project: { $regex: new RegExp(newCondition.key) } },
         { sharePerson: { $regex: new RegExp(newCondition.key) } },
@@ -96,9 +91,9 @@ export class ThemeService {
       .limit(newCondition.limit);
 
     const count = await ThemeModel.find({
-      // recommendToTags: {
-      //   $in: [...user.data[0].tags],
-      // },
+      recommendToTags: {
+        $in: newCondition.tags,
+      },
       $or: [
         { project: { $regex: new RegExp(newCondition.key) } },
         { sharePerson: { $regex: new RegExp(newCondition.key) } },
@@ -119,4 +114,66 @@ export class ThemeService {
       errors: [],
     };
   }
+
+  // // 查找多条电影数据
+  // public static async findRecommendTheme(
+  //   condition: SearchCondition,
+  //   userCondition: OneUserCondition
+  // ): Promise<SearchResult<ThemeInterface>> {
+  //   // 1、条件转换类型
+  //   const newCondition = SearchCondition.transform(condition);
+
+  //   // 2、条件数据验证(异步的)
+  //   const errors = await newCondition.validateThis(true);
+  //   // 有错误的时候返回如下
+  //   if (errors.length > 0) {
+  //     return {
+  //       count: 0,
+  //       data: [],
+  //       errors,
+  //     };
+  //   }
+  //   // 3、进行查询
+  //   // 先关键字查询，然后分页
+  //   const user = await UserModel.findOne(userCondition);
+  //   if (!user) {
+  //     return {
+  //       count: 0,
+  //       data: [],
+  //       errors: [],
+  //     };
+  //   } else if (user && user.tags) {
+  //     const theme = await ThemeModel.find({
+  //       recommendToTags: {
+  //         $in: [...user.tags],
+  //       },
+  //       $or: [
+  //         { project: { $regex: new RegExp(newCondition.key) } },
+  //         { sharePerson: { $regex: new RegExp(newCondition.key) } },
+  //       ],
+  //     })
+  //       .sort({ [newCondition.sort]: -1 })
+  //       .skip((newCondition.page - 1) * newCondition.limit)
+  //       .limit(newCondition.limit);
+  //     const count = await ThemeModel.find({
+  //       recommendToTags: {
+  //         $in: [...user.tags],
+  //       },
+  //       $or: [
+  //         { project: { $regex: new RegExp(newCondition.key) } },
+  //         { sharePerson: { $regex: new RegExp(newCondition.key) } },
+  //       ],
+  //     }).countDocuments();
+  //     return {
+  //       count,
+  //       data: theme,
+  //       errors: [],
+  //     };
+  //   }
+  //   return {
+  //     count: 0,
+  //     data: [],
+  //     errors: [],
+  //   };
+  // }
 }

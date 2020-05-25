@@ -43,9 +43,3 @@ app.use('/api/login', UserRouter);
 app.use('/api/upload', UpLoadRouter);
 
 app.listen(80);
-
-const obj: any = { username: 'wangyibo', password: 19950226 };
-// UserService.findOne(obj)
-// UserService.findOne(obj).then((data) => console.log(data));
-// UserService.edit('wangyibo', ['产品', '人力']);
-UserService.find(obj).then((data) => console.log(data));
