@@ -62,7 +62,8 @@ router.put('/', async (req, res) => {
 router.post('/one', async (req, res) => {
   try {
     const username = req.body.username;
-    const user = await UserService.findOne(username);
+    console.log(username);
+    const user = await UserService.findOne({ username });
     // 响应：服务器的响应格式，往往是一种标准格式
     ResponseHelper.sendData(user, res);
   } catch {
