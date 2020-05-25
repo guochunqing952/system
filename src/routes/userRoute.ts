@@ -13,7 +13,7 @@ router.post('/', async (req, res, next) => {
   const obj: any = { username, password };
   const data = await UserService.find(obj);
   if (data.count > 0) {
-    const result = { ...data.data, code: 1 };
+    const result = [data.data, { code: 1 }];
     res.cookie('username', username, {
       httpOnly: false,
     });
