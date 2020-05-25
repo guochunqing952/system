@@ -9,7 +9,6 @@ const router = Express.Router();
 router.post('/', async (req, res, next) => {
   const { username, password } = req.body;
   const a = req.cookies[username];
-  console.log(req.cookies[username]);
   const obj: any = { username, password };
   const data = await UserService.find(obj);
   if (data.count > 0) {
@@ -62,7 +61,6 @@ router.put('/', async (req, res) => {
 router.post('/one', async (req, res) => {
   try {
     const username = req.body.username;
-    console.log(username);
     const user = await UserService.findOne({ username });
     // 响应：服务器的响应格式，往往是一种标准格式
     ResponseHelper.sendData(user, res);

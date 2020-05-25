@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import Express from 'express';
-import session from 'express-session';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import { appendFile } from 'fs';
@@ -8,8 +7,6 @@ import ThemeRouter from './routes/themeRoute';
 import UserRouter from './routes/userRoute';
 import UpLoadRouter from './routes/upLoadRoute';
 import history from 'connect-history-api-fallback';
-import { ThemeService } from './services/themeServices';
-import { UserService } from './services/userServices';
 
 const app = Express();
 app.use(history());

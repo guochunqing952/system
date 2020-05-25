@@ -4,10 +4,6 @@ import 'reflect-metadata';
 import { Type, plainToClass } from 'class-transformer';
 
 export class UserCondition extends BaseEntity {
-  @IsNotEmpty({ message: '用户邮箱不可以为空' })
-  @Type(() => String)
-  public idNumber: string;
-
   @IsNotEmpty({ message: '用户名不可以为空' })
   @Type(() => String)
   public username: string;

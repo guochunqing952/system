@@ -6,8 +6,6 @@ export interface UserInterface extends User, Mongoose.Document {}
 
 const userSchema = new Mongoose.Schema<UserInterface>(
   {
-    // 用户邮箱
-    idEmail: String,
     // 用户姓名
     username: String,
     // 用户密码
