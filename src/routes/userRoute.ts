@@ -44,4 +44,17 @@ router.post('/out', async (req, res) => {
   ResponseHelper.sendData(result, res);
 });
 
+router.put('/', async (req, res) => {
+  try {
+    const result = await UserService.edit(req.params.id, req.body);
+    if (result.length > 0) {
+      ResponseHelper.sendError(result, res);
+    } else {
+      ResponseHelper.sendData(true, res);
+    }
+  } catch {
+    ResponseHelper.sendError('id错误', res);
+  }
+});
+
 export default router;
