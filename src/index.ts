@@ -45,6 +45,7 @@ app.use('/api/upload', UpLoadRouter);
 app.listen(80);
 
 const obj: any = { username: 'xiaoyi' };
+// UserService.findOne(obj)
 // UserService.findOne(obj).then((data) => console.log(data));
 // UserService.edit('wangyibo', ['产品', '人力']);
 // UserService.findOne(obj).then((data) => console.log(data));
