@@ -59,4 +59,15 @@ router.put('/', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const username = req.body.username;
+    const theme = await UserService.findOne(username);
+    // 响应：服务器的响应格式，往往是一种标准格式
+    ResponseHelper.sendData(theme, res);
+  } catch {
+    ResponseHelper.sendData(null, res);
+  }
+});
+
 export default router;
