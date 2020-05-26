@@ -34,7 +34,7 @@ const upload = multer({
       cb(new Error('文件后缀不正确'));
     }
   },
-}).single('imgfile');
+}).single('.jpg');
 
 router.post('/', (req, res) => {
   // 文件上传的结果
