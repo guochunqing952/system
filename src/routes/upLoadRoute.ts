@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const allowedExtensions = ['.mp4'];
+const allowedExtensions = ['.jpg'];
 const upload = multer({
   storage, // 图片存储位置
   limits: {
