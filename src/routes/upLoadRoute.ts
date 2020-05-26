@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const allowedExtensions = ['.jpg'];
+const allowedExtensions = ['.jpg', '.png', '.gif', 'bmp', '.jiff'];
 const upload = multer({
   storage, // 图片存储位置
   limits: {
@@ -34,7 +34,7 @@ const upload = multer({
       cb(new Error('文件后缀不正确'));
     }
   },
-}).single('.jpg');
+}).single('imgfile');
 
 router.post('/', (req, res) => {
   // 文件上传的结果
