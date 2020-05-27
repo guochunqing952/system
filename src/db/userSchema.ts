@@ -12,6 +12,8 @@ const userSchema = new Mongoose.Schema<UserInterface>(
     password: Number,
     // 用户标签
     tags: [String],
+    // 是否是管理员
+    isManger: Boolean,
   },
   {
     versionKey: false,

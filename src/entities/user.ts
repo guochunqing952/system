@@ -12,6 +12,10 @@ export class User extends BaseEntity {
   @Type(() => Number)
   public password: number;
 
+  @IsNotEmpty({ message: '是否是管理员不可以为空' })
+  @Type(() => Boolean)
+  public isManger: boolean = false;
+
   @IsNotEmpty({ message: '用户标签不可以为空' })
   @ArrayMinSize(1, { message: '标签数量>=1' })
   @IsArray({ message: '用户标签必须是数组' })
