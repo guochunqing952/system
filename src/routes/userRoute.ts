@@ -5,7 +5,6 @@ import { ResponseHelper } from './responseHelper';
 
 const router = Express.Router();
 // 登陆接口
-// 返回的参数 {msg:'xxx',err:1,user:{username,password}}
 router.post('/', async (req, res, next) => {
   const { username, password } = req.body;
   const a = req.cookies[username];
@@ -27,7 +26,6 @@ router.get('/user', async (req, res) => {
   console.log(req.cookies.username);
   if (req.cookies.username) {
     const obj: any = { username: req.cookies.username };
-    console.log(obj);
     const data = await UserService.find(obj);
     const result = { ...data.data, code: 1 };
     ResponseHelper.sendData(result, res);

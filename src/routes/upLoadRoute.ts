@@ -8,7 +8,8 @@ const router = Express.Router();
 // 通过multer库设置上传的文件名和位置
 const storage = multer.diskStorage({
   // 设置上传的文件名
-  destination: path.resolve(__dirname, '../../public/upload/'),
+  // destination: path.resolve(__dirname, '../../public/upload/'),
+  destination: path.resolve(__dirname, '../../dist/public/upload/'),
   filename(req, file, cb) {
     // 文件名
     const time = new Date().getTime();

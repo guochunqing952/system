@@ -7,13 +7,11 @@ import ThemeRouter from './routes/themeRoute';
 import UserRouter from './routes/userRoute';
 import UpLoadRouter from './routes/upLoadRoute';
 import history from 'connect-history-api-fallback';
-import { UserService } from './services/userServices';
 
 const app = Express();
 app.use(history());
 app.use('/', Express.static('public/build'));
 app.use('/upload', Express.static('public/upload'));
-// app.use('/upload', Express.static('dist/public/upload'));
 
 // 配置中间件，用于解析请求消息体中的json格式
 app.use(Express.json());
@@ -42,13 +40,3 @@ app.use('/api/login', UserRouter);
 app.use('/api/upload', UpLoadRouter);
 
 app.listen(80);
-
-// const obj: any = {
-//   tags: ['人力资源部', '内部', 'true', '初级', '英语'],
-//   username: 'xiaomi',
-//   password: 12345678,
-//   isManger: true,
-// };
-// UserService.add(obj).then((data) => {
-//   console.log(data);
-// });
