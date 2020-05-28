@@ -69,10 +69,57 @@ export class ThemeService {
     }
     // 3、进行查询
     // 先关键字查询，然后分页
+    if (newCondition.tags) {
+      const theme = await ThemeModel.find({
+        recommendToTags: {
+          $in: newCondition.tags,
+        },
+        $or: [
+          { project: { $regex: new RegExp(newCondition.key) } },
+          { sharePerson: { $regex: new RegExp(newCondition.key) } },
+        ],
+        $and: [
+          { recommendToTags: { $regex: new RegExp(newCondition.department) } },
+          { recommendToTags: { $regex: new RegExp(newCondition.type) } },
+          { recommendToTags: { $regex: new RegExp(newCondition.difficulty) } },
+          {
+            recommendToTags: {
+              $regex: new RegExp(newCondition.specialContent),
+            },
+          },
+        ],
+      })
+        .sort({ [newCondition.sort]: -1 })
+        .skip((newCondition.page - 1) * newCondition.limit)
+        .limit(newCondition.limit);
+
+      const count = await ThemeModel.find({
+        recommendToTags: {
+          $in: newCondition.tags,
+        },
+        $or: [
+          { project: { $regex: new RegExp(newCondition.key) } },
+          { sharePerson: { $regex: new RegExp(newCondition.key) } },
+        ],
+        $and: [
+          { recommendToTags: { $regex: new RegExp(newCondition.department) } },
+          { recommendToTags: { $regex: new RegExp(newCondition.type) } },
+          { recommendToTags: { $regex: new RegExp(newCondition.difficulty) } },
+          {
+            recommendToTags: {
+              $regex: new RegExp(newCondition.specialContent),
+            },
+          },
+        ],
+      }).countDocuments();
+
+      return {
+        count,
+        data: theme,
+        errors: [],
+      };
+    }
     const theme = await ThemeModel.find({
-      recommendToTags: {
-        $in: newCondition.tags,
-      },
       $or: [
         { project: { $regex: new RegExp(newCondition.key) } },
         { sharePerson: { $regex: new RegExp(newCondition.key) } },
@@ -91,9 +138,6 @@ export class ThemeService {
       .limit(newCondition.limit);
 
     const count = await ThemeModel.find({
-      recommendToTags: {
-        $in: newCondition.tags,
-      },
       $or: [
         { project: { $regex: new RegExp(newCondition.key) } },
         { sharePerson: { $regex: new RegExp(newCondition.key) } },
