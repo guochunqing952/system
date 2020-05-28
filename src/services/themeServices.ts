@@ -69,6 +69,7 @@ export class ThemeService {
     }
     // 3、进行查询
     // 先关键字查询，然后分页
+    console.log(newCondition.tags);
     if (newCondition.tags) {
       const theme = await ThemeModel.find({
         recommendToTags: {

@@ -7,6 +7,7 @@ import ThemeRouter from './routes/themeRoute';
 import UserRouter from './routes/userRoute';
 import UpLoadRouter from './routes/upLoadRoute';
 import history from 'connect-history-api-fallback';
+import { ThemeService } from './services/themeServices';
 
 const app = Express();
 app.use(history());
@@ -40,3 +41,6 @@ app.use('/api/login', UserRouter);
 app.use('/api/upload', UpLoadRouter);
 
 app.listen(80);
+
+const con: any = {};
+ThemeService.find(con).then((data) => console.log(data));
