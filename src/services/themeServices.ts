@@ -70,7 +70,9 @@ export class ThemeService {
     // 3、进行查询
     // 先关键字查询，然后分页
     console.log(newCondition.tags);
-    if (newCondition.tags) {
+
+    if (newCondition.tags.length !== 0) {
+      console.log('zbcvakbcajkbc');
       const theme = await ThemeModel.find({
         recommendToTags: {
           $in: newCondition.tags,
@@ -120,6 +122,8 @@ export class ThemeService {
         errors: [],
       };
     }
+
+    console.log('123');
     const theme = await ThemeModel.find({
       $or: [
         { project: { $regex: new RegExp(newCondition.key) } },
