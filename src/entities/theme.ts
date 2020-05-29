@@ -20,10 +20,13 @@ export class Theme extends BaseEntity {
   @Type(() => Number)
   public timing: number = new Date().getTime();
 
-  @IsNotEmpty({ message: '范大链接不可以为空' })
+  @IsNotEmpty({ message: '内容链接不可以为空' })
   @Type(() => String)
-  public link: string =
-    'https://empower.4paradigm.com/#/course-center/fe8bb9a5-1cd2-4374-afce-2fc94839ebc0';
+  public themeLink: string = '';
+
+  @IsNotEmpty({ message: '主题背景图片链接不可以为空' })
+  @Type(() => String)
+  public pictureLink: string = '';
 
   @IsNotEmpty({ message: '课程标签不可以为空' })
   @ArrayMinSize(1, { message: '课程标签>=1' })

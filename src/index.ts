@@ -41,6 +41,3 @@ app.use('/api/login', UserRouter);
 app.use('/api/upload', UpLoadRouter);
 
 app.listen(80);
-
-const con: any = {};
-ThemeService.find(con).then((data) => console.log(data));

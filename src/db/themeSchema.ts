@@ -15,6 +15,8 @@ const themeSchema = new Mongoose.Schema<ThemeInterface>(
     visitor: Number,
     timing: Number,
     link: String,
+    themeLink: String,
+    pictureLink: String,
     recommendToTags: [String],
   },
   {
