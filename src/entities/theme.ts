@@ -20,8 +20,8 @@ export class Theme extends BaseEntity {
   @Type(() => Number)
   public timing: number = new Date().getTime();
 
-  @IsNotEmpty({ message: '内容链接不可以为空' })
-  @Type(() => String)
+  // @IsNotEmpty({ message: '内容链接不可以为空' })
+  // @Type(() => String)
   public themeLink: string = '';
 
   // @IsNotEmpty({ message: '主题背景图片链接不可以为空' })
