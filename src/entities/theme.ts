@@ -24,8 +24,8 @@ export class Theme extends BaseEntity {
   @Type(() => String)
   public themeLink: string = '';
 
-  @IsNotEmpty({ message: '主题背景图片链接不可以为空' })
-  @Type(() => String)
+  // @IsNotEmpty({ message: '主题背景图片链接不可以为空' })
+  // @Type(() => String)
   public pictureLink: string = '';
 
   @IsNotEmpty({ message: '课程标签不可以为空' })
