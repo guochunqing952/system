@@ -12,7 +12,7 @@ router.post('/', async (req, res, next) => {
   const data = await UserService.find(obj);
   if (data.count > 0) {
     const result = data.data;
-    res.cookie('username', username, {
+    res.cookie('token', username, {
       httpOnly: false,
     });
     ResponseHelper.sendData(result, res);
