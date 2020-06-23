@@ -8,6 +8,8 @@ import UserRouter from './routes/userRoute';
 import UpLoadRouter from './routes/upLoadRoute';
 import history from 'connect-history-api-fallback';
 import { ThemeService } from './services/themeServices';
+import { UserService } from './services/userServices';
+import { User } from './entities/user';
 
 const app = Express();
 app.use(history());
@@ -82,7 +84,7 @@ function isTrue() {
 }
 
 function b() {
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 3; i++) {
     let obj: any = {
       project: project[getRandom(i % 12)],
       sharePerson: name[getRandom(i % 7)],
@@ -94,7 +96,7 @@ function b() {
         department[getRandom(i % 7)],
         type[getRandom(i % 5)],
         difficulty[getRandom(i % 3)],
-        isTrue(),
+        'true',
       ],
       visitor: 0,
     };
@@ -102,3 +104,9 @@ function b() {
   }
 }
 // b();
+const user: any = {
+  username: 'yibo',
+  password: 12345678,
+  tags: ['销售', '销售', '特色课程', '中级'],
+};
+// UserService.add(user).then((data) => console.log(data));
